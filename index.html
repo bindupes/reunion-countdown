@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('https://live.staticflickr.com/1070/5151161631_edac6be881_b.jpg') no-repeat center center fixed;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             background-size: cover;
             color: #ffffff;
             min-height: 100vh;
@@ -58,29 +58,27 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 
         .countdown-display::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, var(--overlay-opacity, 0.4));
-            border-radius: 20px;
-            z-index: 1;
-        }
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+    border-radius: 20px;
+}
+
 
         :root {
             --overlay-opacity: 0.4;
         }
 
-        .countdown-display > * {
-            position: relative;
-            z-index: 2;
-        }
+        z-index: 1;
+position: relative;
+
 
         .theme-selector {
             display: grid;
