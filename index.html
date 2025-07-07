@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10th Class Reunion Countdown</title>
     <meta name="theme-color" content="#1a1a1a">
-    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUmV1bmlvbiBDb3VudGRvd24iLCJzaG9ydF9uYW1lIjoiQ291bnRkb3duIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1qUXdJaUJvWldsbmFIUTlJakkwTUNJZ2RtbGxkMEp2ZUQwaU1DQXdJakkwTUNBeU5EQWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQSEpsWTNRZ2VEMGlORkFpSUhrOUlqUkFJaUIzYVdSMGFEMGlNVGt5SWlCb1pXbG5hSFE5SWpFNU1pSWdabWxzYkQwaUl6RXlNVEF5TlNJdlBqeDBaWGgwSUhnOUlqRXlNQ0lnZVQwaU1UY3dJaUJtYjI1MExXWmhiV2xzZVQwaUlHMXZibTl6Y0dGalpTSWdkR1Y0ZEMxaGJtTm9iM0k5SW0xcFpHUnNaU0lnWm1sc2JEMGlJemRHUkVGR1FTSStRbTl5YUc5c1BTOE1kR1Y0ZEQ0OEwzTjJaejQ9IiwidHlwZSI6ImltYWdlL3N2Zyt4bWwiLCJzaXplcyI6IjI0MHgyNDAifV0sInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWExYTFhIiwidGhlbWVfY29sb3IiOiIjMWExYTFhIn0=">
     <style>
         * {
             margin: 0;
@@ -15,14 +14,12 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            background-size: cover;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
-
         }
 
         .container {
@@ -44,48 +41,41 @@
             color: #7DAFFF;
         }
 
-       
-.countdown-display {
-    width: 300px;
-    height: 200px;
-    background-image: url('https://live.staticflickr.com/1070/5151161631_edac6be881_b.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 20px;
-    position: relative;
-    padding: 20px;
-    color: white;
-    font-family: sans-serif;
-    text-align: center;
-}
-
-
-
+        .countdown-display {
+            background-image: url('https://live.staticflickr.com/1070/5151161631_edac6be881_b.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
 
         .countdown-display::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 0;
-    border-radius: 20px;
-}
-
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, var(--overlay-opacity, 0.4));
+            border-radius: 20px;
+            z-index: 1;
+        }
 
         :root {
             --overlay-opacity: 0.4;
         }
 
-        z-index: 1;
-position: relative;
-
-
-        .theme-selector {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 10px;
+        .countdown-display > * {
+            position: relative;
+            z-index: 2;
         }
 
         .emoji-display {
@@ -114,273 +104,6 @@ position: relative;
             color: #7DAFFF;
             font-weight: 500;
         }
-
-        .controls {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .control-group {
-            margin-bottom: 15px;
-        }
-
-        .control-label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #cccccc;
-            font-weight: 500;
-        }
-
-        .control-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            font-size: 14px;
-        }
-
-        .control-input:focus {
-            outline: none;
-            border-color: #7DAFFF;
-            box-shadow: 0 0 0 2px rgba(125, 175, 255, 0.2);
-        }
-
-        .emoji-picker {
-            display: none;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 10px;
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .emoji-grid {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            gap: 5px;
-        }
-
-        .emoji-item {
-            font-size: 24px;
-            padding: 8px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-        }
-
-        .emoji-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
-            background: linear-gradient(135deg, #7DAFFF 0%, #5A9BFF 100%);
-            color: white;
-            width: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(125, 175, 255, 0.3);
-        }
-
-        .btn-small {
-            padding: 8px 15px;
-            font-size: 12px;
-            width: auto;
-            margin-left: 10px;
-        }
-
-        .bg-selector {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .bg-option {
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid transparent;
-            font-size: 12px;
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-        }
-
-        .bg-option.active {
-            border-color: #7DAFFF;
-            box-shadow: 0 0 10px rgba(125, 175, 255, 0.5);
-        }
-
-        .bg-glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .bg-school {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .bg-gradient1 {
-            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
-        }
-
-        .bg-gradient2 {
-            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
-        }
-
-        .bg-gradient3 {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-
-        .bg-pattern1 {
-            background: linear-gradient(45deg, #1a1a1a 25%, #2d2d2d 25%, #2d2d2d 50%, #1a1a1a 50%, #1a1a1a 75%, #2d2d2d 75%, #2d2d2d);
-            background-size: 20px 20px;
-        }
-
-        .image-upload {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            background: rgba(125, 175, 255, 0.1);
-            border: 2px dashed rgba(125, 175, 255, 0.5);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.2s;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .image-upload:hover {
-            background: rgba(125, 175, 255, 0.2);
-            border-color: #7DAFFF;
-        }
-
-        .image-upload input[type="file"] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .opacity-slider {
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .opacity-slider input[type="range"] {
-            width: 100%;
-            height: 5px;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        .opacity-slider input[type="range"]::-webkit-slider-thumb {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #7DAFFF;
-            cursor: pointer;
-        }
-
-        .theme-option {
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid transparent;
-            font-size: 12px;
-        }
-
-        .theme-option.active {
-            border-color: #7DAFFF;
-        }
-
-        .theme-dark {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: #ffffff;
-        }
-
-        .theme-colorful {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #ffffff;
-        }
-
-        .theme-gradient {
-            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
-            color: #ffffff;
-        }
-
-        .install-prompt {
-            background: rgba(125, 175, 255, 0.1);
-            border: 1px solid rgba(125, 175, 255, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .install-prompt h3 {
-            color: #7DAFFF;
-            margin-bottom: 10px;
-        }
-
-        .install-steps {
-            text-align: left;
-            font-size: 14px;
-            color: #cccccc;
-        }
-
-        .install-steps li {
-            margin-bottom: 5px;
-            margin-left: 20px;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .countdown-time {
-                font-size: 28px;
-            }
-            
-            .emoji-display {
-                font-size: 40px;
-            }
-            
-            .title {
-                font-size: 20px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -395,303 +118,20 @@ position: relative;
             <div class="countdown-label">Hours : Minutes : Seconds</div>
             <div class="target-date" id="targetDate">July 13, 2025</div>
         </div>
-
-        <div class="controls">
-            <div class="control-group">
-                <label class="control-label">Event Title:</label>
-                <input type="text" class="control-input" id="titleInput" value="10th Class Reunion" placeholder="Enter event title">
-            </div>
-
-            <div class="control-group">
-                <label class="control-label">Target Date:</label>
-                <input type="datetime-local" class="control-input" id="dateInput">
-            </div>
-
-            <div class="control-group">
-                <label class="control-label">Choose Emoji:</label>
-                <div style="display: flex; align-items: center;">
-                    <input type="text" class="control-input" id="emojiInput" value="🎓" placeholder="🎓" readonly style="flex: 1;">
-                    <button class="btn btn-small" onclick="toggleEmojiPicker()">Pick</button>
-                </div>
-                <div class="emoji-picker" id="emojiPicker">
-                    <div class="emoji-grid" id="emojiGrid"></div>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label">Background for Countdown Box:</label>
-                <div class="bg-selector">
-                    <div class="bg-option bg-glass active" onclick="changeBackground('glass')">
-                        <div>💎</div>
-                        <div>Glass</div>
-                    </div>
-                    <div class="bg-option bg-school" onclick="changeBackground('school')">
-                        <div>🏫</div>
-                        <div>School</div>
-                    </div>
-                    <div class="bg-option bg-gradient1" onclick="changeBackground('gradient1')">
-                        <div>🌈</div>
-                        <div>Sunset</div>
-                    </div>
-                    <div class="bg-option bg-gradient2" onclick="changeBackground('gradient2')">
-                        <div>🌅</div>
-                        <div>Warm</div>
-                    </div>
-                    <div class="bg-option bg-gradient3" onclick="changeBackground('gradient3')">
-                        <div>🌸</div>
-                        <div>Soft</div>
-                    </div>
-                    <div class="bg-option bg-pattern1" onclick="changeBackground('pattern1')">
-                        <div>⚫</div>
-                        <div>Pattern</div>
-                    </div>
-                </div>
-                
-                <div class="image-upload">
-                    <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
-                    <div>📸 Upload Your Own Background</div>
-                    <div style="font-size: 12px; color: #999; margin-top: 5px;">Class photo, school building, or any image</div>
-                </div>
-                
-                <div class="opacity-slider">
-                    <label class="control-label">Background Opacity:</label>
-                    <input type="range" min="0" max="100" value="40" id="opacitySlider" oninput="changeOpacity(this.value)">
-                    <div style="text-align: center; font-size: 12px; color: #999;">Makes text more readable</div>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label">Overall Page Theme:</label>
-                <div class="theme-selector">
-                    <div class="theme-option theme-dark active" onclick="changeTheme('dark')">
-                        <div>🌙</div>
-                        <div>Dark</div>
-                    </div>
-                    <div class="theme-option theme-colorful" onclick="changeTheme('colorful')">
-                        <div>🌈</div>
-                        <div>Colorful</div>
-                    </div>
-                    <div class="theme-option theme-gradient" onclick="changeTheme('gradient')">
-                        <div>🎨</div>
-                        <div>Gradient</div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="btn" onclick="saveSettings()">Save & Update</button>
-        </div>
-
-        <div class="install-prompt">
-            <h3>📱 Add to Home Screen</h3>
-            <ol class="install-steps">
-                <li>Tap your browser menu (⋮)</li>
-                <li>Select "Add to Home screen"</li>
-                <li>Tap "Add" to install</li>
-                <li>Find the countdown widget on your home screen!</li>
-            </ol>
-        </div>
     </div>
 
     <script>
-        // Emoji collection
-        const emojis = [
-            '🎓', '📚', '👥', '🎉', '🏫', '📝', '🎯', '⭐', '💫', '🌟',
-            '🔥', '💖', '💝', '🎈', '🎊', '🎁', '🏆', '🥇', '🎪', '🎭',
-            '🎨', '🎵', '🎶', '🎤', '🎸', '🎹', '🎺', '🎻', '🎲', '🎮',
-            '⚽', '🏀', '🏈', '⚾', '🎾', '🏐', '🏉', '🎱', '🏓', '🏸',
-            '🚀', '✈️', '🚁', '⛵', '🚗', '🚕', '🚙', '🚌', '🚐', '🚚',
-            '🌍', '🌎', '🌏', '🌕', '🌖', '🌗', '🌘', '🌑', '🌒', '🌓',
-            '☀️', '🌤️', '⛅', '🌦️', '🌧️', '⛈️', '🌩️', '❄️', '☃️', '⛄',
-            '🍎', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈', '🍒', '🍑',
-            '🌹', '🌺', '🌻', '🌷', '🌸', '💐', '🌿', '🍀', '🌱', '🌳',
-            '😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆', '😊', '😍',
-            '🤗', '🤔', '😎', '🤓', '🧐', '🤠', '🥳', '😇', '🤩', '😋'
-        ];
-
-        // Settings storage
-        let settings = {
+        const settings = {
             title: '10th Class Reunion',
-            targetDate: '2025-07-13T06:00:00',
+            targetDate: '2025-07-13T00:00:00',
             emoji: '🎓',
-            theme: 'dark',
-            background: 'glass',
-            customImage: null,
             opacity: 40
         };
 
-        // Load settings from localStorage equivalent (using variables)
-        function loadSettings() {
-            // Since we can't use localStorage, we'll use default settings
-            // In a real app, you'd load from localStorage here
-            updateDisplay();
-        }
-
-        // Initialize emoji picker
-        function initEmojiPicker() {
-            const emojiGrid = document.getElementById('emojiGrid');
-            emojis.forEach(emoji => {
-                const emojiItem = document.createElement('div');
-                emojiItem.className = 'emoji-item';
-                emojiItem.textContent = emoji;
-                emojiItem.onclick = () => selectEmoji(emoji);
-                emojiGrid.appendChild(emojiItem);
-            });
-        }
-
-        // Toggle emoji picker
-        function toggleEmojiPicker() {
-            const picker = document.getElementById('emojiPicker');
-            picker.style.display = picker.style.display === 'none' ? 'block' : 'none';
-        }
-
-        // Select emoji
-        function selectEmoji(emoji) {
-            document.getElementById('emojiInput').value = emoji;
-            toggleEmojiPicker();
-        }
-
-        // Change background
-        function changeBackground(bgType) {
-            settings.background = bgType;
-            
-            // Remove active class from all bg options
-            document.querySelectorAll('.bg-option').forEach(option => {
-                option.classList.remove('active');
-            });
-            
-            // Add active class to selected background
-            document.querySelector(`.bg-${bgType}`).classList.add('active');
-            
-            // Apply background to countdown display
-            const countdownDisplay = document.querySelector('.countdown-display');
-            
-            switch(bgType) {
-                case 'glass':
-                    countdownDisplay.style.background = 'rgba(255, 255, 255, 0.1)';
-                    countdownDisplay.style.backdropFilter = 'blur(10px)';
-                    break;
-                case 'school':
-                    countdownDisplay.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                    countdownDisplay.style.backdropFilter = 'none';
-                    break;
-                case 'gradient1':
-                    countdownDisplay.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%)';
-                    countdownDisplay.style.backdropFilter = 'none';
-                    break;
-                case 'gradient2':
-                    countdownDisplay.style.background = 'linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%)';
-                    countdownDisplay.style.backdropFilter = 'none';
-                    break;
-                case 'gradient3':
-                    countdownDisplay.style.background = 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)';
-                    countdownDisplay.style.backdropFilter = 'none';
-                    break;
-                case 'pattern1':
-                    countdownDisplay.style.background = 'linear-gradient(45deg, #1a1a1a 25%, #2d2d2d 25%, #2d2d2d 50%, #1a1a1a 50%, #1a1a1a 75%, #2d2d2d 75%, #2d2d2d)';
-                    countdownDisplay.style.backgroundSize = '20px 20px';
-                    countdownDisplay.style.backdropFilter = 'none';
-                    break;
-            }
-        }
-
-        // Handle image upload
-        function handleImageUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    settings.customImage = e.target.result;
-                    const countdownDisplay = document.querySelector('.countdown-display');
-                    countdownDisplay.style.backgroundImage = `url(${e.target.result})`;
-                    countdownDisplay.style.backgroundSize = 'cover';
-                    countdownDisplay.style.backgroundPosition = 'center';
-                    countdownDisplay.style.backdropFilter = 'none';
-                    
-                    // Remove active class from preset backgrounds
-                    document.querySelectorAll('.bg-option').forEach(option => {
-                        option.classList.remove('active');
-                    });
-                    
-                    settings.background = 'custom';
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Change opacity
-        function changeOpacity(value) {
-            settings.opacity = value;
-            const overlay = document.querySelector('.countdown-display::before');
-            document.querySelector('.countdown-display').style.setProperty('--overlay-opacity', value / 100);
-            
-            // Update CSS custom property
-            document.documentElement.style.setProperty('--overlay-opacity', value / 100);
-        }
-
-        // Change theme
-        function changeTheme(theme) {
-            settings.theme = theme;
-            
-            // Remove active class from all theme options
-            document.querySelectorAll('.theme-option').forEach(option => {
-                option.classList.remove('active');
-            });
-            
-            // Add active class to selected theme
-            document.querySelector(`.theme-${theme}`).classList.add('active');
-            
-            // Apply theme
-            const body = document.body;
-            switch(theme) {
-                case 'dark':
-                    body.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)';
-                    break;
-                case 'colorful':
-                    body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                    break;
-                case 'gradient':
-                    body.style.background = 'linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%)';
-                    break;
-            }
-        }
-
-        // Save settings
-        function saveSettings() {
-            settings.title = document.getElementById('titleInput').value;
-            settings.targetDate = document.getElementById('dateInput').value;
-            settings.emoji = document.getElementById('emojiInput').value;
-            
-            updateDisplay();
-            alert('Settings saved! 🎉');
-        }
-
-        // Update display
         function updateDisplay() {
             document.getElementById('displayTitle').textContent = settings.title;
             document.getElementById('displayEmoji').textContent = settings.emoji;
-            
-            // Update input fields
-            document.getElementById('titleInput').value = settings.title;
-            document.getElementById('dateInput').value = settings.targetDate;
-            document.getElementById('emojiInput').value = settings.emoji;
-            document.getElementById('opacitySlider').value = settings.opacity;
-            
-            // Apply saved background
-            if (settings.background && settings.background !== 'custom') {
-                changeBackground(settings.background);
-            } else if (settings.customImage) {
-                const countdownDisplay = document.querySelector('.countdown-display');
-                countdownDisplay.style.backgroundImage = `url(${settings.customImage})`;
-                countdownDisplay.style.backgroundSize = 'cover';
-                countdownDisplay.style.backgroundPosition = 'center';
-            }
-            
-            // Apply saved opacity
-            changeOpacity(settings.opacity);
-            
-            // Update target date display
-            const targetDate = new Date(settings.targetDate);
-            document.getElementById('targetDate').textContent = targetDate.toLocaleDateString('en-US', {
+            document.getElementById('targetDate').textContent = new Date(settings.targetDate).toLocaleDateString('en-US', {
                 weekday: 'long',
                 year: 'numeric',
                 month: 'long',
@@ -699,7 +139,6 @@ position: relative;
             });
         }
 
-        // Countdown timer
         function updateCountdown() {
             const now = new Date().getTime();
             const targetTime = new Date(settings.targetDate).getTime();
@@ -715,7 +154,7 @@ position: relative;
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            const formattedTime = 
+            const formattedTime =
                 String(hours).padStart(2, '0') + ':' +
                 String(minutes).padStart(2, '0') + ':' +
                 String(seconds).padStart(2, '0');
@@ -723,30 +162,12 @@ position: relative;
             document.getElementById('countdownTime').textContent = formattedTime;
         }
 
-        // Initialize app
         function init() {
-            // Set default date to July 13, 2025
-            const defaultDate = new Date('2025-07-13T06:00:00');
-            const dateInput = document.getElementById('dateInput');
-            dateInput.value = defaultDate.toISOString().slice(0, 16);
-            settings.targetDate = dateInput.value;
-            
-            loadSettings();
-            initEmojiPicker();
+            updateDisplay();
             updateCountdown();
-            
-            // Update countdown every second
             setInterval(updateCountdown, 1000);
         }
 
-        // Service worker registration for PWA
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('data:text/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZXZlbnQgPT4geyBzZWxmLnNraXBXYWl0aW5nKCk7IH0pOyBzZWxmLmFkZEV2ZW50TGlzdGVuZXIoJ2FjdGl2YXRlJywgZXZlbnQgPT4geyBzZWxmLmNsaWVudHMuY2xhaW0oKTsgfSk7')
-                .then(() => console.log('Service Worker registered'))
-                .catch(err => console.log('Service Worker registration failed'));
-        }
-
-        // Start the app
         window.onload = init;
     </script>
 </body>
